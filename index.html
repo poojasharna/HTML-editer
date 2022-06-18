@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>w3 editor</title>
+    <link rel="shortcut icon" href="https://static.wikia.nocookie.net/logopedia/images/9/9a/W3Schools_2020_2.svg/revision/latest?cb=20210514020422">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body{
+              background-color: #dddddd;
+        }
+    	div {
+            padding: 10px;
+            background-color: #dddddd;
+            overflow: hidden;
+        }
+    	input[type=text], textarea, select {
+           font: 22px Calibri;
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type=button]{ 
+            font: 17px Calibri;
+            width: auto;
+            float: left;
+            cursor: pointer;
+            padding: 7px;
+        }
+    </style>
+</head>
+<body>
+<form method="get">
+    <div>
+          <input style="width: 100px; height: 50px;" type="reset" value="New">
+            <input style="width: 100px; height: 50px;" type="submit" id="bt" value="Save " accesskey="g" onclick="saveFile()" />
+            <input style="width: 100px; height: 50px;" value="About" type="button" onclick=alk()>
+    </div>
+	<div>
+            <div>
+        <div>
+            <br>
+            <textarea style=" background-color: rgb(0, 0, 0); color:rgb(255, 255, 255);" id="msg" name="text" font-size="25" rows="38" cols="50"  value="" ">
+                <html >
+                <head>
+                    <title>Document</title>
+                </head>
+                <body>
+                    
+                </body>
+                </html></textarea>
+            <br/>
+        </div>
+        <!--Add few elements to the form-->
+    </div>
+</form> 
+</body>
+<script>
+    function alk(){
+    alert("Hello ! friends you are using HTML editor made by w3 editor.")}
+    let saveFile = () => {
+    	
+        // Get the data from each element on the form.
+        const msg = document.getElementById('msg');
+        
+        // This variable stores all the data.
+        let data = 
+            '\r' + msg.value;
+        
+        // Convert the text to BLOB.
+        const textToBLOB = new Blob([data], { type: 'html/plain' });
+        const sFileName = 'project.html';	   // The file to save the data.
+
+        let newLink = document.createElement("a");
+        newLink.download = sFileName;
+
+        if (window.webkitURL != null) {
+            newLink.href = window.webkitURL.createObjectURL(textToBLOB);
+        }
+        else {
+            newLink.href = window.URL.createObjectURL(textToBLOB);
+            newLink.style.display = "none";
+            document.body.appendChild(newLink);
+        }
+
+        newLink.click(); 
+    }
+</script>
+</html>
